@@ -28,13 +28,13 @@ delete-local-kube-cluster:
 # Builds the Docker image for the 'pinger' service
 build-pinger:
 	# Build the Docker image for the pinger service from the Dockerfile in the app/pinger directory and tag it as ping:latest
-	docker build -t ping:latest app/pinger
+	docker build -t pinger:latest app/pinger
 
 # Target: build-ponger
 # Builds the Docker image for the 'ponger' service
 build-ponger:
 	# Build the Docker image for the ponger service from the Dockerfile in the app/ponger directory and tag it as pong:latest
-	docker build -t pong:latest app/ponger
+	docker build -t ponger:latest app/ponger
 
 # Target: run-local-kube-with-ping-pong-app
 # This builds both pinger and ponger, creates a local k3d Kubernetes cluster, and deploys the services
