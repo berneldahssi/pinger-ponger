@@ -16,3 +16,18 @@ spec:
       - name: pinger
         image: library/pinger:latest
         imagePullPolicy: Never # required for k3d imported images
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: pinger
+spec:
+  selector:
+    app.kubernetes.io/name: pinger
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+

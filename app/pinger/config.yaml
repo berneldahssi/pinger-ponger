@@ -1,6 +1,6 @@
 ponger:
-  url: https://pong:8080
+  url: https://localhost:8080
   # If uncommented, acceptCert will add
   # the certificates listed in the file to
   # the list of accepted certificates
-  # acceptCert: server.crt
+  acceptCert: /app/certs/server.crt

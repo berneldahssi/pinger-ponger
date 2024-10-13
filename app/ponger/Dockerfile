@@ -5,7 +5,7 @@ FROM golang:latest AS builder
 WORKDIR /app
 
 # Copy source code
-COPY . .
+COPY ponger .
 
 # Install dependencies
 RUN go mod download
@@ -23,11 +23,11 @@ WORKDIR /app
 COPY --from=builder /app/ponger .
 COPY --from=builder /app/config.yaml .
 
+# Copy self-signed certificates
+COPY certs /app/certs
+
 # Expose the port (adjust if needed)
 EXPOSE 8080
 
 # Command to run the application
 CMD ["./ponger"]
-
-# Optional: Copy configuration file (adjust path if needed)
-# COPY config.yaml /app/config.yaml

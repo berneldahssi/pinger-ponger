@@ -27,7 +27,7 @@ metadata:
   name: pong
 spec:
   selector:
-    app.kubernetes.io/name: pong
+    app.kubernetes.io/name: ponger
   ports:
     - protocol: TCP
       port: 8080
@@ -45,6 +45,13 @@ spec:
   policyTypes:
   - Ingress
   - Egress
+  ingress:
+  - from:
+    - podSelector: {}  # Allow all pods to communicate with each other
+  egress:
+  - to:
+    - podSelector: {}
+
 ---
 
 apiVersion: networking.k8s.io/v1
