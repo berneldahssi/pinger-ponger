@@ -2,8 +2,6 @@
 
 Welcome to the **Ping-Pong Microservices** project! This microservice architecture showcases how two simple applications, **Pinger** and **Ponger**, communicate securely via TLS, containerized with Docker, and orchestrated using Kubernetes. The aim is to demonstrate secure, scalable communication between services using lightweight Go applications and a k3d cluster.
 
----
-
 ## 🌟 Key Features
 - **Microservices Architecture**: Two services:
   - **Pinger**: Sends "ping" requests.
