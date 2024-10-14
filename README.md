@@ -119,7 +119,7 @@ We use **self-signed certificates** (located in the `certs` directory) to secure
 
      2. Generate the certificate:
         ```bash
-        openssl req -x509 -nodes -newkey rsa:2048 -keyout tls.key -out tls.crt -days 365 -config san.cnf
+        openssl req -x509 -nodes -newkey rsa:2048 -keyout server.key -out server.crt -days 365 -config san.cnf
         ```
 ---
 
