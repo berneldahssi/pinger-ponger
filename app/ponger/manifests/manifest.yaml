@@ -42,12 +42,15 @@ spec:
   selector:
     app.kubernetes.io/name: ponger
   ports:
-    - protocol: TCP
-      port: 8080
-      targetPort: 8080
-        # - name: https
-        #port: 443
-        #targetPort: 8080
+  - name: http
+    port: 8080
+    protocol: TCP
+    targetPort: 8080
+  - name: https
+    port: 443
+    protocol: TCP
+    targetPort: 8080
+
 
 ---
 
