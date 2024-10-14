@@ -1,0 +1,6 @@
+# Ignore certificate files
+app/certs/*.crt
+app/certs/*.key
+
+# Ignore OpenSSL configuration files
+app/certs/*.cnf
