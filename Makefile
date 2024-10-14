@@ -39,7 +39,9 @@ build-ponger:
 	docker build -t ponger:latest app -f app/ponger/Dockerfile
 
 # Target: run-local-kube-with-ping-pong-app
-# This builds both pinger and ponger, creates a local k3d Kubernetes cluster, and deploys the services
+# This builds both pinger and ponger, creates a local k3d Kubernetes cluster, and deploys the services 
+# kubectl create secret tls your-tls-secret --cert=app/certs/server.crt --key=app/certs/server.key
+
 run-local-kube-with-ping-pong-app: build-pinger build-ponger create-k3d-cluster
 	# Import the Docker images into the k3d cluster
 	k3d image import pinger:latest --cluster cluster \

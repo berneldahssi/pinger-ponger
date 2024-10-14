@@ -18,13 +18,26 @@ spec:
         imagePullPolicy: Never # required for k3d imported images
         ports:
         - containerPort: 8080
+          #volumeMounts:
+          #- name: tls-cert
+          #mountPath: "/app/certs"
+          #readOnly: true
+          #env:
+          #- name: TLS_CERT_FILE
+          #value: "/app/certs/server.crt"
+          #- name: TLS_KEY_FILE
+          #value: "/app/certs/server.key"
+          #volumes:
+          #- name: tls-cert
+          #secret:
+          #secretName: your-tls-secret
 
 ---
 
 apiVersion: v1
 kind: Service
 metadata:
-  name: pong
+  name: ponger
 spec:
   selector:
     app.kubernetes.io/name: ponger
@@ -32,45 +45,42 @@ spec:
     - protocol: TCP
       port: 8080
       targetPort: 8080
+        # - name: https
+        #port: 443
+        #targetPort: 8080
 
 ---
 
-apiVersion: networking.k8s.io/v1
-kind: NetworkPolicy
-metadata:
-  name: default-deny-all
-  namespace: default
-spec:
-  podSelector: {}
-  policyTypes:
-  - Ingress
-  - Egress
-  ingress:
-  - from:
-    - podSelector: {}  # Allow all pods to communicate with each other
-  egress:
-  - to:
-    - podSelector: {}
+# apiVersion: networking.k8s.io/v1
+# kind: NetworkPolicy
+# metadata:
+#   name: default-deny-all
+#  namespace: default
+# spec:
+#  podSelector: {}
+#  policyTypes:
+#  - Ingress
+#  - Egress
 
 ---
 
-apiVersion: networking.k8s.io/v1
-kind: NetworkPolicy
-metadata:
-  name: allow-allpods-to-dns
-  namespace: default
-spec:
-  policyTypes:
-  - Egress
-  podSelector: {}
-  egress:
-  - to:
-    - namespaceSelector:
-        matchLabels:
-          kubernetes.io/metadata.name: kube-system
-      podSelector:
-        matchLabels:
-          k8s-app: kube-dns
-    ports:
-    - port: 53
-      protocol: TCP
+# apiVersion: networking.k8s.io/v1
+# kind: NetworkPolicy
+# metadata:
+#  name: allow-allpods-to-dns
+#  namespace: default
+# spec:
+#   policyTypes:
+#    - Egress
+#  podSelector: {}
+#  egress:
+#  - to:
+#    - namespaceSelector:
+#        matchLabels:
+#          kubernetes.io/metadata.name: kube-system
+#      podSelector:
+#        matchLabels:
+#          k8s-app: kube-dns
+#    ports:
+#    - port: 53
+#      protocol: TCP

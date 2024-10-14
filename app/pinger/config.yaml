@@ -1,5 +1,5 @@
 ponger:
-  url: https://localhost:8080
+  url: https://ponger:8080
   # If uncommented, acceptCert will add
   # the certificates listed in the file to
   # the list of accepted certificates
